@@ -5,7 +5,9 @@ import java.io.*;
 
 public class DataIO {
 	/*
-	 * readData reads text from a file and stores it in two arrays
+	 * readData reads text from a file and stores it in two arrays, and then
+	 * proceeds to calculate a grade based of the average score of each student
+	 * 
 	 */
 	String[][] myNames;
 	double[][] stuScores;
@@ -43,7 +45,7 @@ public class DataIO {
 	/*
 	 * Reads the data in the specified file and stores is in local arrays
 	 * 
-	 * @fileIn String The name of the file
+	 * @param fileIn The name of the file
 	 */
 	public void readData(String fileIn) {
 		inputFile = fileIn;
@@ -51,7 +53,8 @@ public class DataIO {
 	}
 
 	/*
-	 * Reads the data in an already-specified file and stores it in local arrays
+	 * Reads the data in an already-specified file and stores it in local arrays, as
+	 * well as computing the average score and the letter grade
 	 */
 	public void readData() {
 		Scanner myIn = null; // Initializes fileIn to empty
@@ -85,7 +88,7 @@ public class DataIO {
 					total += stuScores[i][j]; // Keeps track of the total scores
 				}
 				stuScores[i][j] = total / (stuScores[i].length - 1); // Stores the average score in the next slot
-				grades[i] = grade(stuScores[i][j]);
+				grades[i] = grade(stuScores[i][j]); // Assigns a letter grade to the student based on their score
 			}
 			System.out.println("Closing input file: " + inputFile);
 			myIn.close();
@@ -95,7 +98,28 @@ public class DataIO {
 
 	}
 
-	public void writeData() {
-
+	/*
+	 * Writes the stored data onto the specified file
+	 * 
+	 * @param fileOut The file that the data gets written onto
+	 */
+	public void writeData(String fileOut) {
+		PrintWriter outputStream = null;
+		try {
+			outputStream = new PrintWriter(new FileOutputStream(fileOut));
+			System.out.println("Writing to file.");
+			outputStream.println("Name\tScore1 Score2 Score3 Average Grade\n");
+			for (int i = 0; i < myNames.length; i++) {
+				outputStream.print(myNames[i][1] + ", " + myNames[i][0] + ": ");
+				for (int j = 0; j < stuScores[i].length; j++) {
+					outputStream.print(stuScores[i][j] + " ");
+				}
+				outputStream.println(grades[i]);
+			}
+			System.out.println("Closing file.");
+			outputStream.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("Error opening the file " + fileOut);
+		}
 	}
 }
