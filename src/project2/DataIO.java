@@ -9,6 +9,7 @@ public class DataIO {
 	 */
 	String[] myNames;
 	double[][] stuScores;
+	String inputFile = "project2IN.txt";
 
 	public void printData() {
 		for (int i = 0; i < myNames.length; i++) {
@@ -20,16 +21,29 @@ public class DataIO {
 		}
 	}
 
+	public DataIO(String fileIn) {
+		inputFile = fileIn;
+	}
+
 	public void readData() {
 		Scanner myIn = null; // Initializes fileIn to empty
 		String first, last;
-		String inputFile = "project2IN.txt";
+		Scanner lineCounter = null;
 		try {
 			// Attempt to open the file
 			myIn = new Scanner(new FileInputStream(inputFile));
+			lineCounter = new Scanner(new FileInputStream(inputFile));
+			int n = 0;
+			while (lineCounter.hasNextLine()) {
+				String placeHolder = lineCounter.nextLine();
+				n++;
+			}
+			myNames = new String[n];
+			stuScores = new double[n][4];
+			System.out.println("Opening input file: " + inputFile);
 			int i = 0;
 			while (myIn.hasNextLine()) {
-				// String placeHolder=myIn.nextLine();
+				lineCounter = new Scanner(myIn.nextLine());
 				first = myIn.next();
 				last = myIn.next();
 				myNames[i] = (last + ", " + first);
@@ -40,6 +54,7 @@ public class DataIO {
 					total += stuScores[i][j]; // Keeps track of the total scores
 				}
 				stuScores[i][j + 1] = total / (stuScores[i].length); // Stores the average score in the next slot
+				i++;
 			}
 			System.out.println("Closing input file: " + inputFile);
 			myIn.close();
