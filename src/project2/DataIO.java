@@ -42,8 +42,9 @@ public class DataIO {
 			stuScores = new double[n][4];
 			System.out.println("Opening input file: " + inputFile);
 			int i = 0;
-			while (myIn.hasNextLine()) {
-				lineCounter = new Scanner(myIn.nextLine());
+			//while (myIn.hasNextLine()) {
+				for(i=0;i<n;i++) {
+				//lineCounter = new Scanner(myIn.nextLine());
 				first = myIn.next();
 				last = myIn.next();
 				myNames[i] = (last + ", " + first);
@@ -53,8 +54,8 @@ public class DataIO {
 					stuScores[i][j] = myIn.nextDouble();
 					total += stuScores[i][j]; // Keeps track of the total scores
 				}
-				stuScores[i][j + 1] = total / (stuScores[i].length); // Stores the average score in the next slot
-				i++;
+				stuScores[i][j] = total / (stuScores[i].length-1); // Stores the average score in the next slot
+				
 			}
 			System.out.println("Closing input file: " + inputFile);
 			myIn.close();
