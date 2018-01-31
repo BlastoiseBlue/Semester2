@@ -1,0 +1,6 @@
+Name                Score1 Score2 Score3 Average Grade
+Organa, Leia:         98.0   95.5  100.0   97.8      A
+Flintstone, Fred:     65.0   74.5   76.3   71.9      D
+Cooper, Sheldon:     100.0  100.0   99.0   99.7      A
+Marsh, Stan:          89.0   84.0   80.5   84.5      B
+Simpson, Lisa:        93.0   94.5   92.0   93.2      A

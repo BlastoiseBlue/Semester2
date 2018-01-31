@@ -108,13 +108,13 @@ public class DataIO {
 		try {
 			outputStream = new PrintWriter(new FileOutputStream(fileOut));
 			System.out.println("Writing to file.");
-			outputStream.println("Name\tScore1 Score2 Score3 Average Grade\n");
+			outputStream.printf("%-20sScore1 Score2 Score3 Average Grade\n", "Name");
 			for (int i = 0; i < myNames.length; i++) {
-				outputStream.print(myNames[i][1] + ", " + myNames[i][0] + ": ");
+				outputStream.printf("%-20s", myNames[i][1] + ", " + myNames[i][0] + ": ");
 				for (int j = 0; j < stuScores[i].length; j++) {
-					outputStream.print(stuScores[i][j] + " ");
+					outputStream.printf("%6.1f ", stuScores[i][j]);
 				}
-				outputStream.println(grades[i]);
+				outputStream.printf("%6c\n", grades[i]);
 			}
 			System.out.println("Closing file.");
 			outputStream.close();

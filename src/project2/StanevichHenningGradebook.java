@@ -17,16 +17,13 @@ public class StanevichHenningGradebook {
 		}
 	}
 
-	/*static void printRaw(DataIO input) {
-		System.out.println("Displaying data as stored:");
-		for (int i = 0; i < input.myNames.length; i++) {
-			System.out.print(input.myNames[i][1] + ", " + input.myNames[1][0] + ": ");
-			for (int j = 0; j < input.stuScores.length - 1; j++) {
-				System.out.print(input.stuScores[i][j]);
-			}
-			System.out.println();
-		}
-	}*/
+	/*
+	 * static void printRaw(DataIO input) {
+	 * System.out.println("Displaying data as stored:"); for (int i = 0; i <
+	 * input.myNames.length; i++) { System.out.print(input.myNames[i][1] + ", " +
+	 * input.myNames[1][0] + ": "); for (int j = 0; j < input.stuScores.length - 1;
+	 * j++) { System.out.print(input.stuScores[i][j]); } System.out.println(); } }
+	 */
 
 	/*
 	 * This will read an input file, reorder the names to last, first and print out
@@ -37,7 +34,7 @@ public class StanevichHenningGradebook {
 		DataIO students = new DataIO("C:\\Users\\emmet\\eclipse-workspace\\Semester2\\bin\\project2\\project2IN.txt");
 		students.readData();
 		printClean(students);
-		students.writeData("project2OUT");
+		students.writeData("project2OUT.txt");
 	}
 
 }
