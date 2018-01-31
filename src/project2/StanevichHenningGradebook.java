@@ -31,7 +31,7 @@ public class StanevichHenningGradebook {
 	 * will output the results into project2OUT.txt
 	 */
 	public static void main(String[] args) {
-		DataIO students = new DataIO("C:\\Users\\emmet\\eclipse-workspace\\Semester2\\bin\\project2\\project2IN.txt");
+		DataIO students = new DataIO("project2IN.txt");
 		students.readData();
 		printClean(students);
 		students.writeData("project2OUT.txt");
