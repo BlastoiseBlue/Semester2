@@ -1,5 +1,8 @@
 package project2;
 
+/*
+ * @authors Emmet Stanevich and Miranda Henning
+ */
 import java.util.Scanner;
 import java.io.*;
 
@@ -12,7 +15,8 @@ public class DataIO {
 	String[][] myNames;
 	double[][] stuScores;
 	char[] grades;
-	String inputFile = "project2IN.txt";
+	String inputFile = null;
+
 	/*
 	 * Determines the letter grade based on the average score
 	 * 
@@ -30,24 +34,14 @@ public class DataIO {
 		else
 			return 'F';
 	}
-	/*
-	 * public void printData() { for (int i = 0; i < myNames.length; i++) {
-	 * System.out.print(myNames[i] + ":\n"); for (int j = 0; j <
-	 * stuScores[i].length; j++) { System.out.print(stuScores[i][j] + "\t");
-	 * 
-	 * } System.out.println(); } }
-	 */
 
 	public DataIO(String fileIn) {
 		inputFile = fileIn;
 	}
 
-	public DataIO() {
-
-	}
-
 	/*
-	 * Reads the data in the specified file and stores is in local arrays
+	 * Reads the data in the specified file and stores is in local arrays. This
+	 * method can be used to change the file that is being read from
 	 * 
 	 * @param fileIn The name of the file
 	 */
@@ -58,7 +52,8 @@ public class DataIO {
 
 	/*
 	 * Reads the data in an already-specified file and stores it in local arrays, as
-	 * well as computing the average score and the letter grade
+	 * well as computing the average score and the letter grade. This method will
+	 * also display the information as it is being stored
 	 */
 	public void readData() {
 		Scanner myIn = null; // Initializes fileIn to empty
@@ -78,26 +73,35 @@ public class DataIO {
 			myNames = new String[n][2];
 			stuScores = new double[n][4];
 			grades = new char[n];
-			System.out.println("Opening input file: " + inputFile);
+			System.out.println("Opening input file: " + inputFile + "\n");
+			System.out.println("Displaying data as it is being read");
 			int i = 0;
 			for (i = 0; i < n; i++) {
 				first = myIn.next();
 				last = myIn.next();
 				myNames[i][0] = first;
 				myNames[i][1] = last;
+				System.out.print(myNames[i][1] + ", " + myNames[i][0]);
 				int j = 0;
 				double total = 0;
 				for (j = 0; j < 3; j++) {
 					stuScores[i][j] = myIn.nextDouble();
+					System.out.print(" " + stuScores[i][j]);
 					total += stuScores[i][j]; // Keeps track of the total scores
 				}
+				System.out.println(" " + 0.0);
 				stuScores[i][j] = total / (stuScores[i].length - 1); // Stores the average score in the next slot
 				grades[i] = grade(stuScores[i][j]); // Assigns a letter grade to the student based on their score
 			}
-			System.out.println("Closing input file: " + inputFile);
+			System.out.println("\nHere are the average scores:");
+			for (int k = 0; k < myNames.length; k++) {
+				System.out.println("Average for " + myNames[k][1] + ", " + myNames[k][0] + " is "
+						+ stuScores[k][stuScores[k].length - 1]);
+			}
+			System.out.println("Closing input file: " + inputFile + "\n");
 			myIn.close();
 		} catch (IOException e) {
-			System.out.println("Exception is --- " + e.getMessage());
+			System.out.println("Exception is --- " + e.getMessage() + "\n");
 		}
 
 	}
@@ -111,7 +115,7 @@ public class DataIO {
 		PrintWriter outputStream = null;
 		try {
 			outputStream = new PrintWriter(new FileOutputStream(fileOut));
-			System.out.println("Writing to file.");
+			System.out.println("Writing to output file: " + fileOut + "\n");
 			outputStream.printf("%-20sScore1 Score2 Score3 Average Grade\n", "Name");
 			for (int i = 0; i < myNames.length; i++) {
 				outputStream.printf("%-20s", myNames[i][1] + ", " + myNames[i][0] + ": ");
@@ -120,10 +124,10 @@ public class DataIO {
 				}
 				outputStream.printf("%6c\n", grades[i]);
 			}
-			System.out.println("Closing file.");
+			System.out.println("Closing file: " + fileOut + "\n");
 			outputStream.close();
 		} catch (FileNotFoundException e) {
-			System.out.println("Error opening the file " + fileOut);
+			System.out.println("Error opening the file " + fileOut + "\n");
 		}
 	}
 }
