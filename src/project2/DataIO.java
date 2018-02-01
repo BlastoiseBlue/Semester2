@@ -13,7 +13,11 @@ public class DataIO {
 	double[][] stuScores;
 	char[] grades;
 	String inputFile = "project2IN.txt";
-
+	/*
+	 * Determines the letter grade based on the average score
+	 * 
+	 * @param grade The average score for the given student
+	 */
 	char grade(double grade) {
 		if (grade >= 89.5)
 			return 'A';
