@@ -10,12 +10,13 @@ public class StanevichHenningGradebook {
 	 * @param input The DataIO object that has the 
 	 */
 	static void printClean(DataIO input) {
+		System.out.printf("%-20sScore1 Score2 Score3 Average Grade\n", "Name");
 		for (int i = 0; i < input.myNames.length; i++) {
-			System.out.println(input.myNames[i][1] + ", " + input.myNames[i][0] + ":");
+			System.out.printf("%-20s", input.myNames[i][1] + ", " + input.myNames[i][0] + ": ");
 			for (int j = 0; j < input.stuScores[i].length; j++) {
-				System.out.print(input.stuScores[i][j] + "\t");
+				System.out.printf("%6.1f ", input.stuScores[i][j]);
 			}
-			System.out.println("\n Grade: " + input.grades[i]);
+			System.out.printf("%6c\n", input.grades[i]);
 		}
 	}
 	/*
