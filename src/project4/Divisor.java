@@ -11,7 +11,7 @@ package project4;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
-public class Driver {
+public class Divisor {
 	static void ReturnRatio() {
 		@SuppressWarnings("resource")
 		Scanner scan = new Scanner(System.in);
