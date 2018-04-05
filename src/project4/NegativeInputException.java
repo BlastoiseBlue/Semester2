@@ -8,6 +8,7 @@
  */
 package project4;
 
+@SuppressWarnings("serial")
 public class NegativeInputException extends Exception {
 	public NegativeInputException() {
 		super("ERROR: Input must NOT be negative");
